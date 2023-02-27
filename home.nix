@@ -24,6 +24,7 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    mattermost-desktop
     microsoft-edge
     mpv
     nix-direnv
