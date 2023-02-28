@@ -24,7 +24,10 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    clinfo
+    libsForQt5.neochat
     mattermost-desktop
+    element-desktop
     microsoft-edge
     mpv
     nix-direnv
@@ -41,11 +44,12 @@
     fzf
     fd
     lazygit
-    obs-studio
-    obs-studio-plugins.obs-vkcapture
-    obs-studio-plugins.obs-gstreamer
-    obs-studio-plugins.obs-pipewire-audio-capture
   ];
+
+  programs.obs-studio = with pkgs.obs-studio-plugins; {
+    enable = true;
+    plugins = [ obs-vkcapture obs-gstreamer obs-pipewire-audio-capture ];
+  };
 
   programs.vscode = {
     enable = true;

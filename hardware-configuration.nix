@@ -27,6 +27,12 @@
     [ { device = "/dev/disk/by-uuid/380bba3b-b699-4964-a9c0-64e76bece56b"; }
     ];
 
+  hardware.opengl.extraPackages = with pkgs; [ rocm-opencl-runtime rocm-opencl-icd ];
+
+  systemd.tmpfiles.rules = [
+        "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
+      ];
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
